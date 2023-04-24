@@ -4,13 +4,14 @@ import gymnasium as gym
 import numpy as np
 from QLearning import QLearning
 from numpy import loadtxt
+from time import sleep
 
 env = gym.make("Taxi-v3", render_mode='ansi').env
 
 # only execute the following lines if you want to create a new q-table
-qlearn = QLearning(env, alpha=0.1, gamma=0.99, epsilon=0.7, epsilon_min=0.05, epsilon_dec=0.99, episodes=50000)
-q_table = qlearn.train('data/q-table-taxi-driver.csv', 'results/actions_taxidriver')
-#q_table = loadtxt('data/q-table-taxi-driver.csv', delimiter=',')
+# qlearn = QLearning(env, alpha=0.1, gamma=0.99, epsilon=0.7, epsilon_min=0.05, epsilon_dec=0.9999, episodes=10000)
+# q_table = qlearn.train('data/q-table-taxi-driver.csv', 'results/actions_taxidriver')
+q_table = loadtxt('data/q-table-taxi-driver.csv', delimiter=',')
 
 (state, _) = env.reset()
 epochs, penalties, reward = 0, 0, 0
@@ -34,8 +35,7 @@ while (not done) and (epochs < 100):
     )
     epochs += 1
 
-from IPython.display import clear_output
-from time import sleep
+
 
 clear_output(wait=True)
 

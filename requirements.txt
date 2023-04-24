@@ -2,7 +2,7 @@ gymnasium
 IPython
 matplotlib
 numpy
-tensorflow
+# tensorflow
 pygame
 box2d-py
 swig

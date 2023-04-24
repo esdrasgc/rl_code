@@ -2,15 +2,15 @@ import random
 from IPython.display import clear_output
 import gymnasium as gym
 import numpy as np
-from QLearning import QLearning
+from SARSA import Sarsa
 from numpy import loadtxt
 
 env = gym.make("Taxi-v3", render_mode='ansi').env
 
 # only execute the following lines if you want to create a new q-table
-qlearn = QLearning(env, alpha=0.1, gamma=0.6, epsilon=0.7, epsilon_min=0.05, epsilon_dec=0.99, episodes=100000)
-q_table = qlearn.train('data/q-table-taxi-driver.csv', 'results/actions_taxidriver')
-#q_table = loadtxt('data/q-table-taxi-driver.csv', delimiter=',')
+qlearn = Sarsa(env, alpha=0.1, gamma=0.6, epsilon=0.7, epsilon_min=0.05, epsilon_dec=0.99, episodes=50000)
+q_table = qlearn.train('data/sarsa-table-taxi-driver.csv', 'results/sarsa_actions_taxidriver')
+#q_table = loadtxt('data/sarsa-table-taxi-driver.csv', delimiter=',')
 
 (state, _) = env.reset()
 epochs, penalties, reward = 0, 0, 0
